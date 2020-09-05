@@ -8,5 +8,5 @@ LEFT JOIN
   cities
 ON Trips.city_id = cities.city_id
 WHERE
-  city_name in ('Sao Paulo', 'Campinas')
+  city_name in ('Sao Paulo', 'Campinas') AND
   DATE_PART('day', request_at - current_timestamp) < 30
