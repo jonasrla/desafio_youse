@@ -1,0 +1,1 @@
+{"routing_key":"policy-service.life.policy.refused","message_id":"cb111bb7-3215-505c-8fc4-a3ff6b3c5641","raw_timestamp":1521224698,"payload":{"order_uuid":"3c8bebd4-9b36-569c-a9fa-0ab0e71bab9f","policy_number":1000041110339228,"insurance_type":"life","reason":"CPF with credit restriction"}}

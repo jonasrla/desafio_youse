@@ -1,0 +1,1 @@
+{"routing_key":"policy-service.home.policy.refused","message_id":"f9e1098c-57f1-5c1f-9eb7-e1bb476f44c9","raw_timestamp":1521224808,"payload":{"order_uuid":"97973cee-9d54-54a3-be64-bd4900f7dea1","policy_number":1000009978467321,"insurance_type":"home","reason":"Property already insured"}}

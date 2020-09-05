@@ -1,0 +1,2 @@
+{"routing_key":"policy-service.home.policy.created","message_id":"b5a96631-a78b-5988-890f-25cd890e6cc3","raw_timestamp":1521221088,"payload":{"order_uuid":"be72ca71-7c3b-5e82-abc6-99e2b4c01852","policy_number":1000032024263999,"insurance_type":"home"}}
+{"routing_key":"policy-service.home.policy.created","message_id":"36d2f292-361b-516b-881d-936261707880","raw_timestamp":1521224798,"payload":{"order_uuid":"97973cee-9d54-54a3-be64-bd4900f7dea1","policy_number":1000009978467321,"insurance_type":"home"}}

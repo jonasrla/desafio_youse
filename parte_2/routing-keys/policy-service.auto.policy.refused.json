@@ -1,0 +1,1 @@
+{"routing_key":"policy-service.auto.policy.refused","message_id":"fe94dd0c-59c6-5120-b384-7615e9e1875c","raw_timestamp":1525973098,"payload":{"order_uuid":"e10bde18-2dba-5dd1-af37-4a057a0561d6","policy_number":1000098319050972,"insurance_type":"auto","reason":"Fraud: Stolen vehicle"}}
