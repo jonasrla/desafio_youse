@@ -11,4 +11,4 @@ if __name__ == '__main__':
     context = get_context(file_path)
     raw_data = read_file(file_path)
     new_data = context.transformation(raw_data)
-    context.save(new_data)
+    status = context.save(new_data)
