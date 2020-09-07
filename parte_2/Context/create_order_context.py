@@ -1,31 +1,15 @@
-from pyspark.sql.types import StructField, StructType, StringType, IntegerType
 from pyspark.sql.functions import from_unixtime
 
 from .base_context import BaseContext
 
 class CreateOrderContext(BaseContext):
     def __init__(self):
-        self.input_schema = StructType([
-            StructField('routing_key', StringType(), False),
-            StructField('message_id', StringType(), False),
-            StructField('raw_timestamp', IntegerType(), False),
-            StructField('payload', StructType([
-                StructField('order_uuid', StringType(), False),
-                StructField('insurance_type', StringType(), False),
-                StructField('sales_channel', StringType(), False),
-                StructField('lead_person', StructType([
-                    StructField('name', StringType(), False),
-                    StructField('phone', StringType(), False),
-                    StructField('email', StringType(), False),
-                ]), False)
-            ]), False)
-        ])
 
         self.app_name = 'Process Create Order'
         super().__init__()
 
-    def transformation(self, data):
-        df_input = self.spark.createDataFrame(data, self.input_schema)
+    def transformation(self, file_path):
+        df_input = self.spark.read.json(file_path)
 
         df_input.alias('input')
         df_input.registerTempTable('input')

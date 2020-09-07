@@ -1,37 +1,16 @@
 import sqlite3
 
-from pyspark.sql.types import StructField, StructType, StringType, IntegerType, \
-    DoubleType
 from pyspark.sql.functions import from_unixtime
 
 from .base_context import BaseContext
 
 class QuoteOrderContext(BaseContext):
     def __init__(self):
-        self.input_schema = StructType([
-            StructField('routing_key', StringType(), False),
-            StructField('message_id', StringType(), False),
-            StructField('raw_timestamp', IntegerType(), False),
-            StructField('payload', StructType([
-                StructField('order_uuid', StringType(), False),
-                StructField('insurance_type', StringType(), False),
-                StructField('sales_channel', StringType(), False),
-                StructField('lead_person', StructType([
-                    StructField('name', StringType(), False),
-                    StructField('phone', StringType(), False),
-                    StructField('email', StringType(), False),
-                ]), False),
-                StructField('pricing', StructType([
-                    StructField('monthly_cost', DoubleType(), False)
-                ]), False),
-            ]), False)
-        ])
-
         self.app_name = 'Process Quote Order'
         super().__init__()
 
-    def transformation(self, data):
-        df_input = self.spark.createDataFrame(data, self.input_schema)
+    def transformation(self, file_path):
+        df_input = self.spark.read.json(file_path)
 
         df_quote = df_input.selectExpr('payload.order_uuid as id',
                                        'payload.pricing.monthly_cost as pricing',
