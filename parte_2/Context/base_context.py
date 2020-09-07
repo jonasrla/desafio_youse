@@ -13,7 +13,6 @@ class BaseContext(ABC):
                                          '/Users/Jonas/git_storage/desafio_youse/parte_2/libs/sqlite-jdbc-3.32.3.2.jar') \
                                  .getOrCreate()
 
-        self.create_id = udf(lambda: str(uuid4()))
 
     def transformation(self, data):
         return data
