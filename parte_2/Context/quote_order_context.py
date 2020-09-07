@@ -45,10 +45,6 @@ class QuoteOrderContext(BaseContext):
         conn = sqlite3.connect('datalake.db')
         cur = conn.cursor()
         for row in data.collect():
-            print(f"""UPDATE orders
-            SET updated_at = '{row.updated_at}',
-                pricing = {row.pricing}
-            WHERE id = '{row.id}'""")
             cur.execute(f"""
             UPDATE orders
             SET updated_at = '{row.updated_at}',
