@@ -1,0 +1,1 @@
+{"routing_key":"policy-service.auto.policy.cancelled","message_id":"495d020c-5c53-5b81-afc0-1ad1868888fd","raw_timestamp":1525990398,"payload":{"order_uuid":"898fefa6-63bc-556a-9ad8-0d05b7612477","policy_number":1000053205442708,"insurance_type":"auto","reason":"Estou insatisfeito(a) com os serviços da Youse."}}

@@ -1,0 +1,1 @@
+{"routing_key":"policy-service.home.policy.activated","message_id":"bfb2ef7f-c699-5e12-99d9-fc69e804d026","raw_timestamp":1521221188,"payload":{"order_uuid":"be72ca71-7c3b-5e82-abc6-99e2b4c01852","policy_number":1000032024263999,"insurance_type":"home"}}
