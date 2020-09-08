@@ -13,9 +13,13 @@ class UpdatePolicyContext(BaseContext):
         self.update_table(data, 'policies')
 
     def transformation(self):
-        df_result = self.input.selectExpr('payload.policy_number as id',
-                                          'raw_timestamp as updated_at',
-                                          'payload.reason')
+        if 'reason' not in self.input.select('payload.*').columns:
+            df_result = self.input.selectExpr('payload.policy_number as id',
+                                              'raw_timestamp as updated_at')
+        else:
+            df_result = self.input.selectExpr('payload.policy_number as id',
+                                              'raw_timestamp as updated_at',
+                                              'payload.reason')
 
         df_result = df_result.withColumn('status', f.lit(self.status))
 
