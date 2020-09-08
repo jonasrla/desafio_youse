@@ -15,6 +15,7 @@ class BaseContext(ABC):
                                  .getOrCreate()
 
         self.input = self.spark.read.json(file_path)
+        self.db_path = 'datalake.db'
 
     @abstractmethod
     def process(self):
@@ -26,7 +27,7 @@ class BaseContext(ABC):
 
     def append_table(self, data, table):
         try:
-            data.write.jdbc(url='jdbc:sqlite:datalake.db',
+            data.write.jdbc(url=f'jdbc:sqlite:{self.db_path}',
                             table=table,
                             mode='append',
                             properties={"driver":"org.sqlite.JDBC"})
@@ -40,20 +41,20 @@ class BaseContext(ABC):
         columns = [col for col in data.columns if col != 'id']
         set_clause = ', '.join([f'{col} = '+'{'+col+'}' for col in columns])
         try:
-            conn = sqlite3.connect('datalake.db')
-            cur = conn.cursor()
-            for row in data.collect():
-                kwarg_set_clause = {col: row[col]
-                                        if type(row[col]) is not str
-                                        else "'" + row[col] + "'"
-                                    for col in columns}
-                query = f"""
+            with sqlite3.connect(self.db_path) as conn:
+                cur = conn.cursor()
+                for row in data.collect():
+                    kwarg_set_clause = {col: row[col]
+                                            if type(row[col]) is not str
+                                            else "'" + row[col] + "'"
+                                        for col in columns}
+                    query = f"""
 UPDATE {table}
 SET {set_clause.format(**kwarg_set_clause)}
 WHERE id = '{row.id}'"""
-                print(query)
-                cur.execute(query)
-            conn.commit()
+                    print(query)
+                    cur.execute(query)
+                conn.commit()
         except Exception:
             traceback.print_exc()
             return 'Error'
