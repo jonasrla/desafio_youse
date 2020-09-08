@@ -21,7 +21,7 @@ class BaseContext(ABC):
         return
 
     @abstractmethod
-    def transformation(self, data):
+    def transformation(self):
         return
 
     def append_table(self, data, table):
