@@ -19,13 +19,13 @@ class CreateOrderContext(BaseContext):
 
 
         df_client = self.input.selectExpr('client_id as id',
-                                        'payload.lead_person.*')
+                                          'payload.lead_person.*')
 
         df_order = self.input.selectExpr('raw_timestamp as created_at',
-                                       'payload.order_uuid as id',
-                                       'payload.insurance_type as insurance_type',
-                                       'payload.sales_channel as sales_channel',
-                                       'client_id')
+                                         'payload.order_uuid as id',
+                                         'payload.insurance_type as insurance_type',
+                                         'payload.sales_channel as sales_channel',
+                                         'client_id')
 
         df_order = df_order.withColumn('created_at',
                                        from_unixtime(df_order.created_at))
