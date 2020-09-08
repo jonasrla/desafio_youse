@@ -9,7 +9,6 @@ class CreatePolicyContext(BaseContext):
 
     def process(self):
         df_policy = self.transformation()
-        print(df_policy.collect())
         self.append_table(df_policy, 'policies')
 
     def transformation(self):
