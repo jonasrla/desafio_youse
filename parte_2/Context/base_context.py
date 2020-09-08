@@ -31,6 +31,7 @@ class BaseContext(ABC):
                             mode='append',
                             properties={"driver":"org.sqlite.JDBC"})
         except Exception:
+            traceback.print_exc()
             return 'Error'
 
         return 'Success'
