@@ -1,0 +1,2 @@
+{"routing_key":"policy-service.life.policy.created","message_id":"5a68b2a1-3a28-56d1-99e8-9d74278c611c","raw_timestamp":1521220988,"payload":{"order_uuid":"4472ef6b-df63-594f-a70a-9cca68dfda09","policy_number":1000075771401371,"insurance_type":"life"}}
+{"routing_key":"policy-service.life.policy.created","message_id":"d2822649-d963-5b65-ae29-879a8b78922b","raw_timestamp":1521224598,"payload":{"order_uuid":"3c8bebd4-9b36-569c-a9fa-0ab0e71bab9f","policy_number":1000041110339228,"insurance_type":"life"}}
