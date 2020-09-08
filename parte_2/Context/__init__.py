@@ -18,9 +18,9 @@ def get_context(file_path):
     routing_key = extract_routing_keys(file_path)
     if routing_key[0] == 'order-service':
         if routing_key[-2] == 'quote':
-            context = QuoteOrderContext()
+            context = QuoteOrderContext(file_path)
         elif routing_key[-1] == 'created':
-            context = CreateOrderContext()
+            context = CreateOrderContext(file_path)
         else:
             raise KeyError(exception_message.format(
                            VALID_VALUES = 'created or quote',
@@ -28,13 +28,13 @@ def get_context(file_path):
                            ROUTING_KEY = '.'.join(routing_key)))
     elif routing_key[0] == 'policy-service':
         if routing_key[-1] == 'activated':
-            context = ActivatePolicyContext()
+            context = ActivatePolicyContext(file_path)
         elif routing_key[-1] == 'cancelled':
-            context = CancelPolicyContext()
+            context = CancelPolicyContext(file_path)
         elif routing_key[-1] == 'created':
-            context = CreatePolicyContext()
+            context = CreatePolicyContext(file_path)
         elif routing_key[-1] == 'refused':
-            context = RefusePolicyContext()
+            context = RefusePolicyContext(file_path)
         else:
             raise KeyError(exception_message.format(
                            VALID_VALUES = 'activated or cancelled or created or\
